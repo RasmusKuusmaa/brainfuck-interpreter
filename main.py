@@ -12,9 +12,9 @@ def bf_interpreter(code):
         elif cmd == "<":
             pointer -= 1
         elif cmd == "+":
-            memory[pointer] = memory[pointer] + 1 % 256
+            memory[pointer] = (memory[pointer] + 1) % 256
         elif cmd == "-":
-            memory[pointer] = memory[pointer] + 1
+            memory[pointer] = (memory[pointer] + 1) % 256
         elif cmd == ".":
             output += chr(memory[pointer])
         

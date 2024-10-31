@@ -1,8 +1,8 @@
-def bf_interpreter(code):
+def bf_interpreter(code, input=''):
     memory = [0] * 30000
     pointer = 0
     output = ""
-
+    input_pointer = 0
     loop = {}
     stack = []
     for idx, cmd in enumerate(code):
@@ -33,9 +33,11 @@ def bf_interpreter(code):
         elif cmd == "]":
             if memory[pointer] != 0:
                 code_pointer = loop[code_pointer]
+        elif cmd == ",":
+            memory[pointer] = ord(input[input_pointer])
+            input_pointer += 1
         code_pointer += 1
     return output
 
 print(bf_interpreter(
-    '++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.'
-))
+    ',.,.', 'afesf'))

@@ -42,5 +42,14 @@ def bf_interpreter(code, input=''):
         code_pointer += 1
     return output
 
-print(bf_interpreter(
-    ',.,.', 'afesf'))
+
+def run_file(path, input=''):
+    with open(path, 'r') as f:
+        code = f.read()
+    return bf_interpreter(code, input)
+
+#capturing live input; output = run_file('./helloworld.bf', input())
+
+output = run_file('./helloworld.bf')
+print(output)
+    

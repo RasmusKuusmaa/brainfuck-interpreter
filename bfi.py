@@ -1,4 +1,6 @@
-def bf_interpreter(code, input=''):
+import argparse
+
+def bf_interpreter(code):
     memory = [0] * 30000
     pointer = 0
     output = ""
@@ -34,22 +36,25 @@ def bf_interpreter(code, input=''):
             if memory[pointer] != 0:
                 code_pointer = loop[code_pointer]
         elif cmd == ",":
-            if input_pointer < len(input):
-                memory[pointer] = ord(input[input_pointer])
+                user_input = input()
+                memory[pointer] = ord(user_input[0]) if user_input else 0
                 input_pointer += 1
-            else:
-                memory[pointer] = 0
+
         code_pointer += 1
     return output
 
 
-def run_file(path, input=''):
+def run_file(path):
     with open(path, 'r') as f:
         code = f.read()
-    return bf_interpreter(code, input)
+    return bf_interpreter(code)
 
-#capturing live input; output = run_file('./helloworld.bf', input())
 
-output = run_file('./helloworld.bf')
-print(output)
-    
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("file", help='path to bf file')
+    args = parser.parse_args()
+
+    output = run_file(args.file)
+    print(output)
+        

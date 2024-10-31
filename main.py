@@ -34,8 +34,11 @@ def bf_interpreter(code, input=''):
             if memory[pointer] != 0:
                 code_pointer = loop[code_pointer]
         elif cmd == ",":
-            memory[pointer] = ord(input[input_pointer])
-            input_pointer += 1
+            if input_pointer < len(input):
+                memory[pointer] = ord(input[input_pointer])
+                input_pointer += 1
+            else:
+                memory[pointer] = 0
         code_pointer += 1
     return output
 
